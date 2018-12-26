@@ -1,6 +1,6 @@
-r1 = ["","I","II","III","IV","V","VI","VII","VIII","IX"]
-r10 = ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"]
-r100 = ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]
+romanNumeralLists = [["","I","II","III","IV","V","VI","VII","VIII","IX"],
+                        ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
+                        ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]]
 
 def computeDigits(n):
     """Return list of digits from ones places upward, any number digits"""
@@ -21,16 +21,8 @@ def romanize():
     # address. 0x11117889.
     #
     # variableName = "outy"
-
-    romanNumeralLists = { 2: r1,
-                          1: r10,
-                          0: r100 }
-
-    for i in range(len(rom),-1,1):
-
-        #print(romanNumeralLists[(len(rom)-1)-i][rom[i]])
-        #print(rom[i])
-        outy = romanNumeralLists[(len(rom)-1)-i][rom[i]] + outy
+    for i in range(len(rom)):
+        outy = romanNumeralLists[i][rom[i]] + outy
 
     print(outy)
     #ones = num%10
