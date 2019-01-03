@@ -1,28 +1,53 @@
 '''
 Expression in english
 
-loop over data: 
+loop over data:
 
 
 
 simplifying assumptions  >>> expression that has a value
 '''
-romanNumeralLists = [["","I","II","III","IV","V","VI","VII","VIII","IX"],
-                        ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
-                        ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]]
+
+# data: abstraction
+#
+# low level: use binary data, binary : represent numbers
+#
+#     - characters A-Z, numbers vary in size (large or small),
+#       floating point or integers, represnt some kind of choice
+#       (holding a rifle or flamethrower)
+#
+# variable X holds the character "C"
+#
+#  7+8  :
+#
+# expression: several things that combine according to the rules
+#
+# structures: [1, 2, 3, 4]
+#  x, y, w, z
+#
+# number of players.
+#
+#   list: maintains the values in a specific order, can be accessed by numeric
+#   index
+#
+#   dictionary: { "left": 3, "right": 7}
+#
+#   set:
+
+
+#romanNumeralLists = [["","I","II","III","IV","V","VI","VII","VIII","IX"],
+#                        ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
+#                        ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]]
 
 def genpattern(a,b,c):
     return["",a,a+a,a+a+a,a+b,b,b+a,b+a+a,b+a+a+a,a+c]
 
-romanNumeralLists = [generatePattern("I", "V", "X"),\
-                    generatePattern("X","L", "C"),\
-                    generatePattern]
+romanNumeralLists = [genpattern("I", "V", "X"),
+                    genpattern("X","L", "C"),
+                    genpattern("C", "D", "M")]
 
 #rnl = [generatePattern, generatePat
-
-
-rnl[0]("I", "V", "X")
-
+#rnl[0]("I", "V", "X")
 
 def computeDigits(n):
     """Return list of digits from ones places upward, any number digits"""
@@ -43,10 +68,21 @@ def romanize():
     # address. 0x11117889.
     #
     # variableName = "outy"
-    for i in range(len(rom)):
-        outy = romanNumeralLists[i][rom[i]] + outy
+    if len(rom) > 3:
+        print("Enter a number with less than 4 digits")
+    else:
+        for i in range(len(rom)):
+            outy = romanNumeralLists[i][rom[i]] + outy
 
-    print(outy)
+        print(outy)
+
+
+
+
+
+
+
+
     #ones = num%10
     #tens = (num%100)//10
     #huns = (num%1000)//100
