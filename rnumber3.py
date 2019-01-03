@@ -1,6 +1,28 @@
+'''
+Expression in english
+
+loop over data: 
+
+
+
+simplifying assumptions  >>> expression that has a value
+'''
 romanNumeralLists = [["","I","II","III","IV","V","VI","VII","VIII","IX"],
                         ["","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"],
                         ["","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"]]
+
+def genpattern(a,b,c):
+    return["",a,a+a,a+a+a,a+b,b,b+a,b+a+a,b+a+a+a,a+c]
+
+romanNumeralLists = [generatePattern("I", "V", "X"),\
+                    generatePattern("X","L", "C"),\
+                    generatePattern]
+
+#rnl = [generatePattern, generatePat
+
+
+rnl[0]("I", "V", "X")
+
 
 def computeDigits(n):
     """Return list of digits from ones places upward, any number digits"""
