@@ -1,31 +1,67 @@
 # concern : how do we represent the word along with an indication of what letters have been guessed?
 
 wordier = [("m", True), ("i", False), ("c", True), ("h", False), ("a", True), ("e", True), ("l", False)]
+wordier2 = [("r", True), ("i", True), ("c", True), ("h", True), ("a", True), ("r", True), ("d", True)]
 #print(word)
 
 #print([2*i for i in range(15) if i%2 == 0])
 #print([t[0] for t in word if t[1] == True])
 
 # loop that prints either the character or " _ " depending on flag value
-def wordpresent(word):
-    for t in word:
-        print(t[0] if not t[1] else " _ ")
-# x = 7 if len(wordier) > 4 else (2 if len(wordier) < 2) else 10)
 
-# x == 7
 
-wordpresent(wordier)
-
-def wordchannukah(word):
-    w = [t[0] if not t[1] else " _ " for t in word]
+def showWord(word):
+    w = [t[0] if t[1] else " _ " for t in word]
     print("".join(w))
 
-wordchannukah(wordier)
-print("".join(["s", "e", "a", "n"]))
+showWord(wordier2)
 
-v = "this"
-print(v.join(list("hello")))
+
+
 # 2nd u se of join: Girder(), join(girder1, girder2)
+
+def checkIfComplete(wordTuples):
+    for t,v in wordTuples:
+        if not v:
+            return False
+
+    return True
+
+def checkIfComplete2(wordTuples):
+
+    return False if False in [v for t,v in wordTuples] else True
+
+def checkIfComplete3(wordTuples):
+
+    return all([v for _,v in wordTuples])
+
+# call with letter 'a'
+# [ ('a', False), ('a', True), ('b', True), ('b', False) ]
+# [ ('a', True ), ('a', True), ('b', True), ('b', False) ]
+#
+#  (t == letter) or v
+#
+#   a or b
+# a              b        a or b
+# False          False
+#
+def assignLetter(letter, wordTuples):
+    return [(t, True if t == letter else v) for t,v in wordTuples]
+
+
+#print(checkIfComplete(wordier2))
+#print(checkIfComplete2(wordier2))
+
+print(checkIfComplete3(wordier))
+
+
+if ... condition .. :
+    print("foo")
+    open("foo")
+else:
+    statement2;
+
+
 
 
 '''
@@ -39,12 +75,11 @@ HIGHLEVEL
 
 
 Def gameloop():
-- Select a word
-- Present word and gallows (should it go here?)
+- Select a word --
 - Loop until player wins or loses:
 ---- Present word and body parts (should it go here also, or only?)
 ---- Accept guess of letter
----- Check if letter is in selected word
+---- Check if letter is in selected word - HOMEWORK : write this as list comprehension
 -------- If letter is in selected word
 ------------ If the player has guessed all of the letters in the word
 ---------------- Present the “You Win” message
