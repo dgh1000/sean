@@ -1,14 +1,4 @@
-def main():
-    while True:
-        if "y" == input('Type "y" to Continue').lower():
-            response = True
-        else:
-            response = False
 
-        if response:
-            gameloop()
-        else:
-            break
 
 def wordGuess():
 
@@ -16,21 +6,24 @@ def wordGuess():
 
     return letter_guess
 
+def gameCheck(wordList):
 
-def wordPresent(word):
-    for t in word:
-        print(t[0] if t[1] else " _ ")
+    gCheck = []
+    for l,v in wordList:
+        gCheck.append(v)
 
-def createWordpule(word):
+    if False in gCheck:
+        return False
+    else:
+        return True
 
-    wordpule = []
+    '''   
+    if False in wordList[:][1]:
+        return False
 
-    for letter in word:
-        wordpule.append((letter, False))
-
-    return wordpule
-
-
+    else:
+        return True
+    '''
 
 def guessCheck(letter_guess, letterList):
 
@@ -51,24 +44,18 @@ def guessCheck(letter_guess, letterList):
     else:
         print("Sorry fool")
 
-def gameCheck(wordList):
+def wordPresent(word):
+    for t in word:
+        print(t[0] if t[1] else " _ ")
 
-    gCheck = []
-    for l,v in wordList:
-        gCheck.append(v)
+def createWordpule(word):
 
-    if False in gCheck:
-        return False
-    else:
-        return True
+    wordpule = []
 
-    '''   
-    if False in wordList[:][1]:
-        return False
+    for letter in word:
+        wordpule.append((letter, False))
 
-    else:
-        return True
-    '''
+    return wordpule
 
 def gameloop():
     print("Gameloop Run")
@@ -98,25 +85,43 @@ def gameloop():
             guessCount += 1
 
 
+def promptForGameContinue():
+    while True:
+        s = input("type 'yes' or 'no': ")
+        if s == "yes":
+            return True
+        elif s == "no":
+            return False
+        print(s + " is not an accepted answer.")
 
 
- #   wordier = [("m", True), ("i", False), ("c", True), ("h", False), ("a", True), ("e", True), ("l", False)]
+    #if "y" != input('Type "y" to Continue').lower():
+    #    break
 
 
+def main():
+    while True:
+        if not promptForGameContinue():
+            break
+        gameloop()
+
+# Type 'yes' or 'no':
+#   foo
+# Type 'yes' or 'no':
+#   yes
+# ...
+# Type 'yet' or 'no' to play again:
+#   nope
+# Type ';et' or 'no':
+#   yes
+# ...
 
 
-
-
-def presentGallow():
-    pass
-
-def checkWin():
-    pass
 
 if __name__ == '__main__':
     main()
 
-
+#!=
 '''
 HIGHLEVEL
 - Loop through game decision options
