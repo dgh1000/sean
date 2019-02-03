@@ -1,17 +1,17 @@
-
-
-def wordGuess():
-
+def guessWord():
+    # homework eliminate this as a function
     letter_guess = input("Guess a letter").lower()
 
     return letter_guess
 
-def gameCheck(wordList):
 
+def didUserWin(wordList):
     gCheck = []
+    # homework generate gCheck by list comprehension
     for l,v in wordList:
         gCheck.append(v)
 
+    # homework: use any() or all()
     if False in gCheck:
         return False
     else:
@@ -25,60 +25,50 @@ def gameCheck(wordList):
         return True
     '''
 
-def guessCheck(letter_guess, letterList):
+
+def checkGuess(letter_guess, letterList):
 
     elcount = 0
     letter_found = False
 
     for l,v in letterList:
-
         if letter_guess == l:
             letter_found = True
             letterList[elcount] = (letter_guess, True)
-
         elcount += 1
-
     if letter_found:
         print("Yay {} is in the word.".format(letter_guess))
-
     else:
         print("Sorry fool")
 
-def wordPresent(word):
+
+def presentWord(word):
+    # homework listOfStrings = []
     for t in word:
-        print(t[0] if t[1] else " _ ")
-
-def createWordpule(word):
-
-    wordpule = []
-
-    for letter in word:
-        wordpule.append((letter, False))
-
-    return wordpule
-
-def gameloop():
-    print("Gameloop Run")
-
-    wordtoguess = "michaelmos"
+        print(t[0] if t[1] else " _ ", end='')
 
 
-    wordListuple = createWordpule(wordtoguess)
+def createWordPule(word):
 
-    gameOn = True
+    return [(letter,False) for letter in word]
+
+
+def loopGame():
+    print("loopGame Run")
+
+    # Initialize word.
+    word = "michaelmos"
+    wordPule = createWordPule(word)
+
+    # Begin loop.
     guessCount = 0
-
-    while gameOn:
-
-        wordPresent(wordListuple)
-        guessCheck(wordGuess(),wordListuple)
-
-
-        if gameCheck(wordListuple):
+    while True:
+        presentWord(wordPule)
+        checkGuess(guessWord(),wordPule)
+        if didUserWin(wordPule):
             print("YOU WIN")
             break
-
-        elif guessCount >= (len(wordtoguess) + 4):
+        elif guessCount >= (len(word) + 4):
             print("YOU LOSE")
             break
         else:
@@ -94,7 +84,6 @@ def promptForGameContinue():
             return False
         print(s + " is not an accepted answer.")
 
-
     #if "y" != input('Type "y" to Continue').lower():
     #    break
 
@@ -103,7 +92,7 @@ def main():
     while True:
         if not promptForGameContinue():
             break
-        gameloop()
+        loopGame()
 
 # Type 'yes' or 'no':
 #   foo
@@ -127,12 +116,12 @@ HIGHLEVEL
 - Loop through game decision options
 ---- Accept entry of whether or not the person wants to play again
 ---- if yes:
--------- call gameloop()
+-------- call loopGame()
 ---- else:
 -------- end the game by breaking game decision loop
 
 
-Def gameloop():
+Def loopGame():
 - Select a word
 - Present word and gallows (should it go here?)
 - Loop until player wins or loses:
