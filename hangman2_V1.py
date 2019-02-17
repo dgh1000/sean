@@ -5,26 +5,6 @@ def guessWord():
     return letter_guess
 
 
-def didUserWin(wordList):
-    gCheck = []
-    # homework generate gCheck by list comprehension
-    for l,v in wordList:
-        gCheck.append(v)
-
-    # homework: use any() or all()
-    if False in gCheck:
-        return False
-    else:
-        return True
-
-    '''   
-    if False in wordList[:][1]:
-        return False
-
-    else:
-        return True
-    '''
-
 '''
 def checkGuess(letter_guess, letterList):
 
@@ -53,7 +33,7 @@ def checkGuess(letter_guess, letterList):
 #  ('x', True)      -> ('x', True)
 #  ('x', False)     -> ('x', True)
 
-#Turn into a list comprehension
+# HOMEWORK Turn into a list comprehension
 def checkGuess(letter, wordPule):
     output = []
     for le,bo in wordPule:
@@ -75,6 +55,7 @@ def checkGuess(letter, wordPule):
         print("Letter not in the word")
 
     return output
+
 
 def presentWord(word):
     # homework listOfStrings = []
@@ -115,7 +96,8 @@ def loopGame():
         presentWord(wordPule)
         wordPule = checkGuess(guessWord(), wordPule)
         # checkGuess(guessWord(),wordPule)
-        if didUserWin(wordPule):
+
+        if all([v for l,v in wordPule]):  # Checks to see if the user won
             print("YOU WIN")
             break
         elif guessCount >= (len(word) + 4):
