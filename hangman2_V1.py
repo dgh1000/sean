@@ -1,31 +1,11 @@
-def guessWord():
+#def guessWord():
     # homework eliminate this as a function
-    letter_guess = input("Guess a letter").lower()
+    #letter_guess = input("Guess a letter").lower()
 
-    return letter_guess
-
-
-def didUserWin(wordList):
-    gCheck = []
-    # homework generate gCheck by list comprehension
-    for l,v in wordList:
-        gCheck.append(v)
-
-    # homework: use any() or all()
-    if False in gCheck:
-        return False
-    else:
-        return True
-
-    '''   
-    if False in wordList[:][1]:
-        return False
-
-    else:
-        return True
-    '''
+    #return letter_guess
 
 
+'''
 def checkGuess(letter_guess, letterList):
 
     elcount = 0
@@ -40,12 +20,64 @@ def checkGuess(letter_guess, letterList):
         print("Yay {} is in the word.".format(letter_guess))
     else:
         print("Sorry fool")
+'''
+
+# take input list 'wordPule' and generate output list.
+# for every tuple in wordPule we make a new tuple. if the
+# letter matches, we changed the Boolean to True. if
+# letter doesn't match, we leave Boolean alone
+
+#  'x'
+#  ('l', True)      -> ('l', True)
+#  ('l', False)     -> ('l', False)
+#  ('x', True)      -> ('x', True)
+#  ('x', False)     -> ('x', True)
+
+# HOMEWORK Turn into a list comprehension
+def checkGuess(letter, wordPule):
+    output = []
+    for le,bo in wordPule:
+        if letter.lower() == le:
+            output.append((le, True))
+        else:
+            output.append((le, bo))
+
+    output = []
+
+    #found = False
+    #for le, bo in wordPule:
+    #    if letter.lower() == le:
+    #        found = True
+
+    if letter in [le for le,bo in output]:
+
+    #if found == True:
+        print("Nice job {} in the word".format(letter))
+
+    else:
+        print("Letter not in the word")
+
+    return output
 
 
 def presentWord(word):
     # homework listOfStrings = []
-    for t in word:
-        print(t[0] if t[1] else " _ ", end='')
+    # NOT: [<print, x=1, if <>: else:> for <something> in <something>]
+    # YES: [<expression: x*x, x[0]> for <something> in <something>]
+    #
+    # [expression for item in list]
+
+    # with an if statement, assign the displayed form of a letter to 'd'
+    # input is tuple t
+    list1 = [ le if bo else " _ " for le,bo in word]
+    print("".join(list1))
+
+    # print as "t _ s _ o"
+    # "t, _ ,s, _ ,o"   "".join(list1)
+    #print()
+    #for t in word:
+    #    print(t[0] if t[1] else " _ ", end='')
+
 
 
 def createWordPule(word):
@@ -58,14 +90,16 @@ def loopGame():
 
     # Initialize word.
     word = "michaelmos"
+    # wordPule initialized here
     wordPule = createWordPule(word)
 
     # Begin loop.
     guessCount = 0
     while True:
         presentWord(wordPule)
-        checkGuess(guessWord(),wordPule)
-        if didUserWin(wordPule):
+        wordPule = checkGuess(input("Guess a letter").lower(), wordPule)
+
+        if all([v for l,v in wordPule]):  # Checks to see if the user won
             print("YOU WIN")
             break
         elif guessCount >= (len(word) + 4):
