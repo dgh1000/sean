@@ -2,7 +2,11 @@
     # homework eliminate this as a function
     #letter_guess = input("Guess a letter").lower()
 
+<<<<<<< HEAD
     #return letter_guess
+=======
+    return letter_guess
+>>>>>>> 7eb772af7893cf7f75dacbdfcc8af8261bda1bd9
 
 
 '''
@@ -42,6 +46,7 @@ def checkGuess(letter, wordPule):
         else:
             output.append((le, bo))
 
+<<<<<<< HEAD
     output = []
 
     #found = False
@@ -52,6 +57,15 @@ def checkGuess(letter, wordPule):
     if letter in [le for le,bo in output]:
 
     #if found == True:
+=======
+    found = False
+
+    for le, bo in wordPule:
+        if letter.lower() == le:
+            found = True
+
+    if found == True:
+>>>>>>> 7eb772af7893cf7f75dacbdfcc8af8261bda1bd9
         print("Nice job {} in the word".format(letter))
 
     else:
@@ -97,7 +111,12 @@ def loopGame():
     guessCount = 0
     while True:
         presentWord(wordPule)
+<<<<<<< HEAD
         wordPule = checkGuess(input("Guess a letter").lower(), wordPule)
+=======
+        wordPule = checkGuess(guessWord(), wordPule)
+        # checkGuess(guessWord(),wordPule)
+>>>>>>> 7eb772af7893cf7f75dacbdfcc8af8261bda1bd9
 
         if all([v for l,v in wordPule]):  # Checks to see if the user won
             print("YOU WIN")
