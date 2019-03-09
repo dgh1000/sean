@@ -11,7 +11,11 @@ class WordPule:
         return str(self.stringy)
 
     def toGameString(self):
-        return "b _ n _ n _ "
+        # return " ".join(<list>)
+        # --> ["d", False]
+        return " ".join([i if j else "_" for i,j in self.stringy])
+
+        #return "b _ n _ n _ "
 
 
     def numGuessed(self):
@@ -31,6 +35,4 @@ def loop():
     pass
 
 wordup = WordPule("dog")
-print(wordup.stringy)
-wordup.stringy = 7 # result in a compiler error
-wordup.runGame()
+print(wordup.toGameString())
