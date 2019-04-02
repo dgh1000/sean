@@ -1,3 +1,4 @@
+import getWord
 
 class WordPule:
 
@@ -40,16 +41,11 @@ class WordPule:
             return False
 
 
-
-def getWord():
-
-
-
-    return "mike"
-
 def start():
     """Initialize WordPule and return it."""
-    newWord = WordPule(getWord())
+    mikeWord = getWord.getRandomWord()
+    print("'{}'".format(mikeWord))
+    newWord = WordPule(mikeWord)
     print(newWord.toGameString())
     return newWord
 
@@ -133,4 +129,4 @@ def main():
 #wordup = WordPule("dog")
 #print(wordup.toGameString())
 
-loadDictionary()
+main()

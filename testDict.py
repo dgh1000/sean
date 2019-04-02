@@ -15,5 +15,5 @@ for l in lines:
         linesD.append(x)
     except:
         pass
-    
+
 print(linesD[50001])
