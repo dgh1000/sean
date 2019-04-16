@@ -1,55 +1,71 @@
 import getWord
+import random
 
-class WordPule:
+def getRandomWord():
+    with open("engmix.txt", "rb") as f:
+        lines = f.readlines()
+
+    decodedLines = []
+    for l in lines:
+        try:
+            x = l.decode("utf-8")
+            decodedLines.append(x)
+        except:
+            pass
+
+    return random.choice(decodedLines)
+
+
+class WordManager:
 
     def __init__(self, chars):
         # chars "antidisestablishmentarism"
         # self.tuples = [["a", False], ["b", True]]
-        self.stringy = [[x, False] for x in chars]
-        self.guessedLetter = []
-        print(self.stringy)
+        self.letterStatus = [[x, False] for x in chars]
+        self.guessedLetters = []
+        print(self.letterStatus)
 
     def __str__(self):
-        return str(self.stringy)
+        return str(self.letterStatus)
 
     def toGameString(self):
         # return " ".join(<list>)
         # --> ["d", False]
-        return " ".join([i if j else "_" for i,j in self.stringy])
+        return " ".join([i if j else "_" for i,j in self.letterStatus])
         #return "b _ n _ n _ "
 
     def haveWon(self):
         hasWon = True
-        for i in range(len(self.stringy)):
-            if self.stringy[i][1] == False:
+        for i in range(len(self.letterStatus)):
+            if self.letterStatus[i][1] == False:
                 hasWon  = False
         return hasWon
 
     def checkLetter(self, letterToCheck):
         isLetterInWord = False
-        self.guessedLetter.append(letterToCheck)
-        for i in range(len(self.stringy)):
-            if self.stringy[i][0] == letterToCheck:
+        self.guessedLetters.append(letterToCheck)
+        for i in range(len(self.letterStatus)):
+            if self.letterStatus[i][0] == letterToCheck:
                 isLetterInWord  = True
-                self.stringy[i][1] = True
+                self.letterStatus[i][1] = True
         return  isLetterInWord
 
     def didTheyGuess(self,letterCheck):
-        if letterCheck in self.guessedLetter:
+        if letterCheck in self.guessedLetters:
             return True
         else:
             return False
 
 
-def start():
-    """Initialize WordPule and return it."""
+def initializeWordManager():
+    """Initialize WordManager and return it."""
     mikeWord = getWord.getRandomWord()
     print("'{}'".format(mikeWord))
-    newWord = WordPule(mikeWord)
+    newWord = WordManager(mikeWord)
     print(newWord.toGameString())
     return newWord
 
-def loop(w):
+def playGame(w):
     wrongGuesses = 0
 
     while True:
@@ -60,13 +76,13 @@ def loop(w):
         # if so) and whether game has been won or lost
         #alreadyGuessed = True
         while True:
-            guessedLetter = input("Guess a letter")
-            if w.didTheyGuess(guessedLetter):
+            guessedLetters = input("Guess a letter")
+            if w.didTheyGuess(guessedLetters):
                 print("you already guessed this letter, guess again")
             else:
                 break
 
-        isCorrect = w.checkLetter(guessedLetter) # delegate this to WordPule
+        isCorrect = w.checkLetter(guessedLetters) # delegate this to WordManager
 
         if isCorrect:
             print ("Awesome!!!")
@@ -89,7 +105,7 @@ def loop(w):
 
 
     # Check guessed letter to see if its in the word
-    # If its in the word --> change all instances of letter in stringy to True
+    # If its in the word --> change all instances of letter in letterStatus to True
     # If its not in the word -->
 
 # def finish(w, winFlag):
@@ -114,19 +130,16 @@ def loadDictionary():
 
 
 def main():
-    # instantiate a WordPule and manipulate it to run the game
 
-    # ["adductors", "adducts", "adeeming", ...]
-    dictWords = loadDictionary()
     while True:
-        w = start(dictWords)
-        winFlag = loop(w)
+        w = initializeWordManager()
+        playGame(w)
         if theydontwanttoplayagain:
             break
 
     #finish(w, winFlag)
 
-#wordup = WordPule("dog")
+#wordup = WordManager("dog")
 #print(wordup.toGameString())
 
 main()
