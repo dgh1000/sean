@@ -1,5 +1,6 @@
 import getWord
 import random
+import re
 
 def getRandomWord():
     with open("engmix.txt", "rb") as f:
@@ -34,27 +35,23 @@ class WordManager:
         return " ".join([i if j else "_" for i,j in self.letterStatus])
         #return "b _ n _ n _ "
 
-    def haveWon(self):
-        hasWon = True
+    def userHasWon(self):
         for i in range(len(self.letterStatus)):
             if self.letterStatus[i][1] == False:
-                hasWon  = False
-        return hasWon
+                return False
+        return True
 
-    def checkLetter(self, letterToCheck):
+    def updateLetter(self, guessedLetter):
         isLetterInWord = False
-        self.guessedLetters.append(letterToCheck)
+        self.guessedLetters.append(guessedLetter)
         for i in range(len(self.letterStatus)):
-            if self.letterStatus[i][0] == letterToCheck:
+            if self.letterStatus[i][0] == guessedLetter:
                 isLetterInWord  = True
                 self.letterStatus[i][1] = True
         return  isLetterInWord
 
-    def didTheyGuess(self,letterCheck):
-        if letterCheck in self.guessedLetters:
-            return True
-        else:
-            return False
+    def alreadyGuessed(self,guess):
+        return guess in self.guessedLetters
 
 
 def initializeWordManager():
@@ -66,23 +63,49 @@ def initializeWordManager():
     return newWord
 
 def playGame(w):
+    """Run through a game loop for one game.
+
+    input arguments:
+    - w: WordManager containing word for the game
+
+    return value:
+    - None.
+    """
     wrongGuesses = 0
 
     while True:
         print(wrongGuesses)
 
-        # this employee's job (this function) will be
-        # to determine if it's a correct guess (alter 'w'
-        # if so) and whether game has been won or lost
-        #alreadyGuessed = True
         while True:
             guessedLetters = input("Guess a letter")
-            if w.didTheyGuess(guessedLetters):
+            # what makes input correct? one letter. not previously guessed.
+
+            # match or extract information from strings
+            #
+            # prompt the user for a name: validate the input... all letters,
+            # first was capital, . read a file of comma-separated numbers,
+            # find stretches of numbers, find comma separating them, etc.
+            # or more complex: read formatted data, search for patterns in
+            # text files.
+            #
+            # validate that an input is a single letter.
+            #
+            # pick a letter and write it here: _
+
+            # "[a-z]"
+            # [a-z]           foo
+            #  [a-z]         not match ""
+            # [a-z]          not match "1a"
+
+            # re.match returns a MatchObject which allows us to ask questions
+            # about the match
+            flag = re.match("[a-z]$", guessedLetters)
+            if w.alreadyGuessed(guessedLetters):
                 print("you already guessed this letter, guess again")
-            else:
+            elif flag:
                 break
 
-        isCorrect = w.checkLetter(guessedLetters) # delegate this to WordManager
+        isCorrect = w.updateLetter(guessedLetters) # delegate this to WordManager
 
         if isCorrect:
             print ("Awesome!!!")
@@ -94,40 +117,10 @@ def playGame(w):
             else:
                 print ("too bad, guess again")
 
-        if w.haveWon():
+        if w.userHasWon():
             isWin = True
             print("You Win")
             break
-            #return isWin
-        #else:
-            #isWin = False
-            #return isWin
-
-
-    # Check guessed letter to see if its in the word
-    # If its in the word --> change all instances of letter in letterStatus to True
-    # If its not in the word -->
-
-# def finish(w, winFlag):
-#    if winFlag:
-#        print("YOU WIN!")
-#    else:
-#        print("YOU LOSE")
-#
-#    if input("Would you like to play again True/False?"):
-#        main()
-#    else:
-#        break
-
-def loadDictionary():
-    # you want automatic clean up
-    with open("engmix.txt", "rb") as f:
-        #buffer = f.read()
-        # "accused\naccumulate..."
-        words = f.readlines()
-    print(words[1000])
-    return words
-
 
 def main():
 
@@ -136,10 +129,5 @@ def main():
         playGame(w)
         if theydontwanttoplayagain:
             break
-
-    #finish(w, winFlag)
-
-#wordup = WordManager("dog")
-#print(wordup.toGameString())
 
 main()
