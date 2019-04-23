@@ -104,6 +104,8 @@ def playGame(w):
                 print("you already guessed this letter, guess again")
             elif flag:
                 break
+            else:
+                print("Only guess a single letter")
 
         isCorrect = w.updateLetter(guessedLetters) # delegate this to WordManager
 
