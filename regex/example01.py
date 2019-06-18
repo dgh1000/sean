@@ -123,4 +123,4 @@ def test04():
         printStats(mo)
 
 
-test03()
+test04()
