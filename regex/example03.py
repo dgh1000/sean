@@ -23,27 +23,27 @@ def printStats(mo):
         print('gr:{} start:{:8} end:{:8} | {}'.
               format(i, mo.start(i), mo.end(i), mo.group(i)))
     print()
-              
+
 
 def test01():
     for mo in re.finditer(r'c[a-z]e', data1):
         printStats(mo)
 
-        
+
 def test02():
     for mo in re.finditer(r'c[a-z]*e', data1):
         printStats(mo)
-        
+
 
 def test03():
     for mo in re.finditer(r' c[a-z]*e ', data1):
         printStats(mo)
-        
+
 
 def test04():
     for mo in re.finditer(r' (c[a-z]*e) ', data1):
         printStats(mo)
-        
+
 
 def test05():
     for mo in re.finditer(r'\w+e$', data1, re.MULTILINE):
@@ -57,11 +57,11 @@ def test06():
 def test07():
     for mo in re.finditer(r'^\w+', data1, re.MULTILINE):
         printStats(mo)
-        
+
 
 def test07():
     for mo in re.finditer(r'^\w{5,7}', data1, re.MULTILINE):
         printStats(mo)
-        
 
-test07()
+
+test01()
