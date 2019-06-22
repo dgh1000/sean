@@ -10,7 +10,8 @@ def printStats(mo):
         print('gr:{} start:{:8} end:{:8} | {}'.
               format(i, mo.start(i), mo.end(i), mo.group(i)))
     print()
-              
+
+
 
 # some wildcard characters you might need:
 #
@@ -39,15 +40,16 @@ def puzzle1():
     # documentation for a 3.x version of Python. Look at the documentation for
     # these wildcards and modifiers.
     str1 = "together we run"
-    matchString = "???" # PUT YOUR SOLUTION HERE
-    printStats( re.search(matchString, str1) )
+    matchString = 't.*r' # PUT YOUR SOLUTION HERE
+    print(matchString)
+    printStats(re.search(matchString, str1))
 
 
 def puzzle2():
     # search from the 't' in together to the 'r' in together. Do this with a
     # non-greedy pattern.
     str1 = "together we run"
-    matchString = "???" # PUT YOUR SOLUTION HERE
+    matchString = 't.*r?' # PUT YOUR SOLUTION HERE
     printStats( re.search(matchString, str1) )
 
 def puzzle3():
@@ -55,7 +57,7 @@ def puzzle3():
     # *greedy* pattern but use a different wildcard character so that the
     # matches don't extend past the word together.
     str1 = "together we run"
-    matchString = "???" # PUT YOUR SOLUTION HERE
+    matchString = 't.+?' # PUT YOUR SOLUTION HERE
     printStats( re.search(matchString, str1) )
 
 def puzzle4():
@@ -85,3 +87,5 @@ def puzzle6():
     matchString = "???"
     printStats( re.search(matchString, str1) )
     printStats( re.search(matchString, str2) )
+
+puzzle3()

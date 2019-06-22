@@ -59,9 +59,9 @@ def test07():
         printStats(mo)
 
 
-def test07():
+def test08():
     for mo in re.finditer(r'^\w{5,7}', data1, re.MULTILINE):
         printStats(mo)
 
 
-test01()
+test08()
