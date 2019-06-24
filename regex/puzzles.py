@@ -10,7 +10,8 @@ def printStats(mo):
         print('gr:{} start:{:8} end:{:8} | {}'.
               format(i, mo.start(i), mo.end(i), mo.group(i)))
     print()
-              
+
+
 
 # some wildcard characters you might need:
 #
@@ -39,42 +40,64 @@ def puzzle1():
     # documentation for a 3.x version of Python. Look at the documentation for
     # these wildcards and modifiers.
     str1 = "together we run"
-    matchString = "???" # PUT YOUR SOLUTION HERE
-    printStats( re.search(matchString, str1) )
+    matchString = 't.*r' # PUT YOUR SOLUTION HERE
+    print(matchString)
+    printStats(re.search(matchString, str1))
 
 
 def puzzle2():
     # search from the 't' in together to the 'r' in together. Do this with a
     # non-greedy pattern.
     str1 = "together we run"
-    matchString = "???" # PUT YOUR SOLUTION HERE
+    matchString = 't.t*r?' # PUT YOUR SOLUTION HERE
     printStats( re.search(matchString, str1) )
 
+def puzzle3B():
+    str1 = "aaaabbbbaaabbbbaa"
+    matchString = r'a+b*'
+    for mo in re.finditer(matchString, str1):
+        printStats(mo)
+
+    print('---------------------')
+
+    str2 = "toGether1234 &^@#we run"
+    matchString2 = '\w+\W*' # PUT YOUR SOLUTION HERE
+    for mo in re.finditer(matchString2, str2):
+        printStats(mo)
+
+
+
+
 def puzzle3():
+
     # search from the 't' in together to the 'r' in together. Do this with a
     # *greedy* pattern but use a different wildcard character so that the
     # matches don't extend past the word together.
-    str1 = "together we run"
-    matchString = "???" # PUT YOUR SOLUTION HERE
+    str1 = "toGether1234 &^@#we run"
+    # matchString = 't[A-Za-z0-9]+' # PUT YOUR SOLUTION HERE
+    matchString = '\W+' # PUT YOUR SOLUTION HERE
     printStats( re.search(matchString, str1) )
+    print("-------")
+    for mo in re.finditer(matchString, str1):
+        printStats(mo)
 
 def puzzle4():
     str1 = "together we run. run."
     # find the entire first sentence up to but not including the period. use a
     # greedy expression but adjust the wildcard.
-    matchString = "???" # PUT YOUR SOLUTION HERE
+    matchString = '[^.]+' # PUT YOUR SOLUTION HERE
     printStats( re.search(matchString, str1) )
 
 def puzzle5():
-    str1 = 'this is a "quoted string 1234" outside'
+    str1 = 'this is a "quoted string. 1234" outside "not another quote"'
     # find the double quoted string and everything inside. Capture what's
     # inside as a group (a group that exludes the quotes)
-    matchString = "???" # PUT YOUR SOLUTION HERE
+    matchString = r'"([^"]+)"' # PUT YOUR SOLUTION HERE
     printStats( re.search(matchString, str1) )
 
 
 def puzzle6():
-    str1 = 'yup. This is a sentence. and more.'
+    str1 = 'yup. This is a Mike sentence. and more.'
     str2 = 'okay. And another sentence. and more.'
     # write a regular expression that matches complete sentences starting with
     # a capital letter. Make sure it works for both sentences (in str1 and
@@ -82,6 +105,8 @@ def puzzle6():
     #
     # Note: you'll have to look up how to match a period, because normally a
     # period inside a regular expression is a wildcard.
-    matchString = "???"
+    matchString = r'[A-Z][^.]+[.]'
     printStats( re.search(matchString, str1) )
     printStats( re.search(matchString, str2) )
+
+puzzle6()
