@@ -31,7 +31,7 @@ UID:ccqm2pj5c5gjab9k75i68b9k6osjib9pcoom8b9n6hhm2db6c5j3gdpp64@google.co
 DTEND;VALUE=DATE:20180406
 TRANSP:TRANSPARENT
 X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
-SUMMARY: Ut enim's ad minima veniam\, quis nostrum exercitationem ullam 
+SUMMARY: Ut enim's ad minima veniam\, quis nostrum exercitationem ullam
  suscipit [laboriosam]\, nisi.~x~ ut aliquid ex ea commodi consequatur? Quis
  eum iure reprehenderit☆ qui in ea voluptate velit esse quam nihil molestiae
  consequatur\, vel☆ illum qui dolorem eum fugiat quo voluptas nulla pariatur?

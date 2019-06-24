@@ -10,7 +10,7 @@ def printStats(mo):
         print('gr:{} start:{:8} end:{:8} | {}'.
               format(i, mo.start(i), mo.end(i), mo.group(i)))
     print()
-              
+
 
 # some wildcard characters you might need:
 #
@@ -56,18 +56,20 @@ we run'''
 def puzzle2():
     # match 'foo' OR 'bar'
     str1 = 'foo bar&foo... bar'
-    matchString = r'foo|bar' # PUT YOUR SOLUTION HERE
+    matchString = r'(foo...|bar&+)' # PUT YOUR SOLUTION HERE
     for mo in re.finditer(matchString, str1):
         printStats(mo)
 
 def puzzle3():
     # match exactly 2 consecutive repetitions of x
-    str1 = 'tttt xx x tttxxx'
-    matchString = r'x{2}' # PUT YOUR SOLUTION HERE
-    for mo in re.finditer(matchString, str1):
+    str1 = 'tttt xx x aa bb qq && tttxxx'
+    statement1 = '''BEGIN:description current altitude
+END:description BEGIN:data 1000m END:data'''
+    matchString = r'BEGIN:(\w+) (.*?)END:' # PUT YOUR SOLUTION HERE
+    for mo in re.finditer(matchString, statement1, re.DOTALL):
         printStats(mo)
 
-    
+
 def puzzle3_b():
     # match between 2 and 4 consecutive repetitions of x
     str1 = 'tttt xx x tttxxx xxxxx xxxx'
@@ -75,7 +77,7 @@ def puzzle3_b():
     for mo in re.finditer(matchString, str1):
         printStats(mo)
 
-    
+
 def puzzle4():
     # match 2 repetitions of 'foo' OR 'bar'
     str1 = 'foo barbar bar&foobar... bar'
@@ -87,11 +89,10 @@ def puzzle4():
 def puzzle5():
     # substitute 'foo' with 'foofoo', and 'bar' with 'barbar'
     str1 = 'foo bar x... foofoo'
-    str2 = re.sub(r'(foo|bar)', r'\1\1', str1)
+    str2 = re.sub(r'???', str1)
     print(str2)
 
 
 
-puzzle5()
-
-
+puzzle3()
+#testTripleQuotes()
