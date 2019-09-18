@@ -1,10 +1,15 @@
+bookFileName = 'jj_pofa_p1.txt'
 
-# results = re.finditer(...)
-len(list(results))
-iterlen()
+def readBook(fileName):
+    with open(fileName, 'rb') as f:
+        text = f.read()
 
-https://docs.python.org/2/library/itertools.html
-https://www.fulltextarchive.com/
+    return text
 
-https://www.weather.gov/rev/Text_Forecasts
-figure out city, time, wind speed... any standardized formatted information
+def main():
+    s = readBook(bookFileName)
+    print(s[0:100])
+    str.split()
+
+
+main()
