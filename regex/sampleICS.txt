@@ -32,8 +32,8 @@ DTEND;VALUE=DATE:20180406
 TRANSP:TRANSPARENT
 X-APPLE-TRAVEL-ADVISORY-BEHAVIOR:AUTOMATIC
 SUMMARY: Ut enim's ad minima veniam\, quis nostrum exercitationem ullam
- suscipit [laboriosam]\, nisi.~x~ ut aliquid ex ea commodi consequatur? Quis
- eum iure reprehenderit☆ qui in ea voluptate velit esse quam nihil molestiae
+ suscipit [laboriosam]\, nisi.~x~ ut aliquid ex ea commodi consequatur? Ham
+ burger eum iure reprehenderit☆ qui in ea voluptate velit esse quam nihil molestiae
  consequatur\, vel☆ illum qui dolorem eum fugiat quo voluptas nulla pariatur?
 DTSTART;VALUE=DATE:20180402
 DTSTAMP:20180409T004554Z
