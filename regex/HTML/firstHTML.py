@@ -1,10 +1,25 @@
 import re
 
 htmlstr = '''
-<div>
+<div id="duff" class="doggy" style="yadda">
 <p>Duff got his hair did today</p>
 <p>and I had to do some additional cuts</p>
 </div>
+'''
+
+attrStr1 = 'id="duff" class="doggy" style="yadda"'
+# .*?=
+# \w*? alphanumeric ->   id,   not match id=
+# find iter on attrStr1
+
+attrStr2 = 'id="duff"'
+
+
+htmlstrPD = '''
+<p>P-element First</p>
+<div>
+</div>
+<p>P-element Last</p>
 '''
 
 # 'some words \n '
@@ -16,8 +31,20 @@ htmlstr = '''
 # print(s)
 # print('some chars') 
 
+def removeNewlines(string):
+    '''The function takes a string and returns the string without newline chars'''
+    s = re.sub('\n','',string)
+    return s
+
+def parseAB (string):
+    # '<p>(.*?)</p>'
+    # '<(.*?)>(.*?)</\1>'
+    reExp = r'<(.*?)>(.*?)</\1>'
+    mo = re.search(reExp, string, re.DOTALL)
+    printMO(mo)
+
 def parseALL(string,typeName):
-    reExp = r"'<" + typeName + r">(.*?)</" + typeName + r">'"
+    reExp = r'<' + typeName + r'>(.*?)</' + typeName + r'>'
     mo = re.search(reExp, string, re.DOTALL)
     printMO(mo)
 
@@ -38,7 +65,10 @@ def printMO(mo):
 
 
 def main():
-    parseALL(htmlstr, "div")
+    #parseAB(removeNewlines(htmlstr))
+    parseAB(removeNewlines(htmlstrPD))
+    #parseALL(htmlstrPD, "div")
+    #parseALL(htmlstrPD, "p")
     #parseP(htmlstr)
     #parseDIV(htmlstr)
 
