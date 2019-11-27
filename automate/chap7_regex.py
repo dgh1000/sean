@@ -26,12 +26,13 @@ def isPhoneNumber(text):
     return True
 
 def isPhoneNumberRE(text):
-    regexChecker = re.compile(r'\d\d\d-\d\d\d-\d\d\d\d')
-    print("in RE")
-    #if regexChecker.search(text):
-    #    return True
+    regexChecker = re.compile(r'(\d{3})-(\d\d\d-\d\d\d\d)')
 
-    mo = regexChecker
+    mo = regexChecker.search(text)
+    print("Phone number is " + mo.group() + " the area code is " + mo.group(1))
+    
+    if regexChecker.search(text):
+        return True
 
 #print("not a phone number")
 #print("phone number")
