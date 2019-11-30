@@ -21,20 +21,36 @@ htmlstrPD = '''
 <p>P-element Last</p>
 '''
 
-# 'some words \n '
-# 'something\\somethingelse'
-# 'some\\thing\\here\\is\\taking\\a\\lot\\of\\chars'
-# '\\s\\$(\\w)+'
-# r'\s\$(\w)+'
-# 'some chars'
-# print(s)
-# print('some chars') 
+
+attrStringTest1 = '''
+    <div id="someid" class="someclass"> blah </div>
+'''
+
+attrStringTestNONE = '''
+'''
+
+def searchForOpeningTag():
+    # '[here be non-repeating part][here be repeating part]*'
+    reStructure = r'<(\w+)\s(\w+="(\w+)"\s*)*>'
+    openTag = re.compile(reStructure)
+    #openTag = re.compile(r'(<(.+?)>)')
+    mo = openTag.search(attrStringTest1)
+
+    if mo:
+        print(mo.group(0))
+    else:
+        print("None Case")
+    
+    # for mo in molist:
+        # print(mo.groups())
+        # print(mo.group(2))
 
 
 def searchAttrStr1():
-    attrRegex = re.compile(r'(\w+)="(\w+)"')
+    attrRegex = re.compile(r'(\w+)="(\w+)"', re.DOTALL)
     attrStr1 = 'blah="someElement" class="doggy" style="yadda"'
     molist = attrRegex.finditer(attrStr1)
+    
     # [], [<mo 1>], [<mo 2>, <mo 3>, ... ]
 
     if molist:
@@ -51,7 +67,6 @@ def searchAttrStr1():
         #   'abc'
         #   3
         #   'x'
-
 
     # printMO(mo)
 
@@ -72,30 +87,9 @@ def parseALL(string,typeName):
     mo = re.search(reExp, string, re.DOTALL)
     printMO(mo)
 
-def parseP(string):
-    moP = re.search(r'<p>(.*?)</p>',string,re.DOTALL)
-    printMO(moP)
-
-def parseDIV(string):
-    moDIV = re.search(r'<div>(.*?)</div>',string,re.DOTALL)
-    printMO(moDIV)
-
-
-def printMO(mo):
-    if mo:
-        print(mo.group(1))
-    else:
-        print('Nothing here idiot')
-
-
 def main():
-    #parseAB(removeNewlines(htmlstr))
-    #parseAB(removeNewlines(htmlstrPD))
-    #parseALL(htmlstrPD, "div")
-    #parseALL(htmlstrPD, "p")
-    #parseP(htmlstr)
-    #parseDIV(htmlstr)
-    searchAttrStr1()
+    # searchAttrStr1()
+    searchForOpeningTag()
 
 
 main()
