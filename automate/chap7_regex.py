@@ -27,21 +27,30 @@ def isPhoneNumber(text):
 
 def isPhoneNumberRE(text):
     regexChecker = re.compile(r'(\d{3})-(\d\d\d-\d\d\d\d)')
-
     mo = regexChecker.search(text)
-    print("Phone number is " + mo.group() + " the area code is " + mo.group(1))
+
+    #print("Phone number is " + mo.group() + " the area code is " + mo.group(1))
     
     if regexChecker.search(text):
         return True
+
+def CheckTextOr(text):
+    reCheck2 = re.compile(r'big|(small)? dog')
+    mo = reCheck2.search(text)
+    print(mo.group())
 
 #print("not a phone number")
 #print("phone number")
 
 def main():
     numberToTest = "323-632-8811"
-    if isPhoneNumberRE(numberToTest):
-        print("phone number")
-    else: 
-        print("not a phone number")
+    # if isPhoneNumberRE(numberToTest):
+    #    print("phone number")
+    # else: 
+    #    print("not a phone number")
+
+    textToTest = "dog"
+    CheckTextOr(textToTest)
+
 
 main()
