@@ -36,7 +36,7 @@ def search_for_tags():
     #print(complier.findall(htmlstr)[0][1])
 
     #print(mo.group())
-    attribute_search_string = r'(\w+)="(.*)"'
+    attribute_search_string = r'(\w+)="(.*?)"'
     complier2 = re.compile(attribute_search_string)
     #mo2 = complier2.findall(mo[0])
 
