@@ -1,12 +1,5 @@
 import re
 
-htmlstr = '''
-<div id="duff" class="doggy" style="yadda">
-<p>Duff got his hair did today</p>
-<p>and I had to do some additional cuts</p>
-</div>
-'''
-
 attrStr2 = 'id="duff" class="doggy" style="yadda"'
 # .*?=
 # \w*? alphanumeric ->   id,   not match id=
@@ -28,23 +21,64 @@ attrStringTest1 = '''
 
 attrStringTestNONE = '''
 '''
+htmlstr = '''
+<div id="duff" class="doggy" style="yadda">
+<p>Duff got his hair did today</p>
+<p>and I had to do some additional cuts</p>
+</div>
+<div id="second div" class="second class" style="second style">
+'''
+
+def search_for_tags():
+    search_string = r'<(\w+)\s(.*)>'
+    complier = re.compile(search_string)
+    # mo = complier.findall(htmlstr)
+    #print(complier.findall(htmlstr)[0][1])
+
+    #print(mo.group())
+    attribute_search_string = r'(\w+)="(.*)"'
+    complier2 = re.compile(attribute_search_string)
+    #mo2 = complier2.findall(mo[0])
+
+    print(complier2.findall(complier.findall(htmlstr)[0][1]))
+
+
+    # if mo:
+    #    print(mo.group(0))
+    #    print(mo.group(1))
+    #    print(mo.group(2))
+        # print(mo.group(3))
+    #else:
+    #    print("None Case")
+
+    #if mo2:
+    #    print(mo2.group(0))
+    #    print(mo2.group(1))
+    #    #print(mo2.group(2))
+        # print(mo.group(3))
+    #else:
+    #    print("None Case")
+
 
 def searchForOpeningTag():
     # '[here be non-repeating part][here be repeating part]*'
     reStructure = r'<(\w+)\s(\w+="(\w+)"\s*)*>'
-    openTag = re.compile(reStructure)
-    #openTag = re.compile(r'(<(.+?)>)')
-    mo = openTag.search(attrStringTest1)
+    openTag = re.compile(reStructure, re.DOTALL)
+    # openTag = re.compile(r'(<(.+?)>)')
+    # mo = openTag.search(attrStringTest1)
+    mo = openTag.search(htmlstr)
 
     if mo:
         print(mo.group(0))
+        print(mo.group(1))
+        print(mo.group(2))
+        print(mo.group(3))
     else:
         print("None Case")
     
     # for mo in molist:
         # print(mo.groups())
         # print(mo.group(2))
-
 
 def searchAttrStr1():
     attrRegex = re.compile(r'(\w+)="(\w+)"', re.DOTALL)
@@ -89,7 +123,8 @@ def parseALL(string,typeName):
 
 def main():
     # searchAttrStr1()
-    searchForOpeningTag()
+    # searchForOpeningTag()
+    search_for_tags()
 
 
 main()
