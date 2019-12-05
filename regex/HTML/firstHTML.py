@@ -5,8 +5,6 @@ attrStr2 = 'id="duff" class="doggy" style="yadda"'
 # \w*? alphanumeric ->   id,   not match id=
 # find iter on attrStr1
 
-
-
 htmlstrPD = '''
 <p>P-element First</p>
 <div>
@@ -22,25 +20,30 @@ attrStringTest1 = '''
 attrStringTestNONE = '''
 '''
 htmlstr = '''
-<div id="duff" class="doggy" style="yadda">
-<p>Duff got his hair did today</p>
+<div id="duff" class="doggy" 
+style="yadda"><p>Duff got his hair did today</p>
 <p>and I had to do some additional cuts</p>
 </div>
 <div id="second div" class="second class" style="second style">
 '''
 
 def search_for_tags():
-    search_string = r'<(\w+)\s(.*)>'
-    complier = re.compile(search_string)
-    # mo = complier.findall(htmlstr)
-    #print(complier.findall(htmlstr)[0][1])
+    search_string = r'<(\w+)\s*(.*?)>'
+    search_string_c = re.compile(search_string, re.DOTALL)
+    return search_string_c.findall(htmlstr)
 
-    #print(mo.group())
-    attribute_search_string = r'(\w+)="(.*?)"'
-    complier2 = re.compile(attribute_search_string)
-    #mo2 = complier2.findall(mo[0])
+def search_for_attr(tag_content):
+    """
+    content string: something to be searched
+    regex string: contains a regular expression
+    tag_str_to_search: content
+    """
+    attr_re = r'(\w+)="(.*?)"\s*'
+    attr_re_c = re.compile(attr_re, re.DOTALL)
+    for attr_tuple in attr_re_c.findall(tag_content):
+        print(attr_tuple[1])
 
-    print(complier2.findall(complier.findall(htmlstr)[0][1]))
+    # print(complier2.findall(complier.findall(htmlstr)[0][1]))
 
 
     # if mo:
@@ -124,7 +127,10 @@ def parseALL(string,typeName):
 def main():
     # searchAttrStr1()
     # searchForOpeningTag()
-    search_for_tags()
+    # search_for_tags()
+
+    for tag in search_for_tags():
+        search_for_attr(tag)
 
 
 main()
